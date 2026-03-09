@@ -1,0 +1,93 @@
+<div class="employee-list">
+	<div class="list-head">
+		<div>
+			<p class="section-kicker">Directory</p>
+			<h2>Employee Directory</h2>
+			<p class="section-copy">Search, edit, and manage all workforce records from one place.</p>
+		</div>
+		<div class="record-badge">Total: {{ pagination.total }}</div>
+	</div>
+
+	<div class="toolbar">
+		<div class="search-group">
+			<input
+				type="text"
+				class="form-control"
+				placeholder="Search by name, email, department"
+				[(ngModel)]="searchTerm"
+				(keyup.enter)="onSearch()"
+			/>
+			<button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+			<button mat-stroked-button (click)="clearSearch()">Reset</button>
+		</div>
+
+		<button mat-flat-button color="accent" (click)="createEmployee()">+ Create Employee</button>
+	</div>
+
+	<div class="table-wrap">
+		<table class="table table-hover table-striped align-middle mb-0">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Department</th>
+					<th>Salary</th>
+					<th>Joining Date</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let employee of employees">
+					<td>{{ employee.name }}</td>
+					<td>{{ employee.email }}</td>
+					<td>{{ employee.department }}</td>
+					<td>{{ employee.salary | currency: 'INR' }}</td>
+					<td>{{ employee.joining_date | date: 'mediumDate' }}</td>
+					<td>
+						<div class="action-buttons">
+							<button mat-raised-button color="primary" (click)="editEmployee(employee)">Edit</button>
+							<button mat-raised-button color="warn" (click)="openDeleteModal(employee)">Delete</button>
+						</div>
+					</td>
+				</tr>
+				<tr *ngIf="employees.length === 0">
+					<td colspan="6" class="text-center py-4">No employees found.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="pagination-wrap" *ngIf="pagination.totalPages > 1">
+		<button mat-stroked-button (click)="changePage(page - 1)" [disabled]="page === 1">Previous</button>
+
+		<button
+			*ngFor="let p of pageNumbers"
+			mat-button
+			[class.active-page]="p === page"
+			(click)="changePage(p)"
+		>
+			{{ p }}
+		</button>
+
+		<button
+			mat-stroked-button
+			(click)="changePage(page + 1)"
+			[disabled]="page === pagination.totalPages"
+		>
+			Next
+		</button>
+	</div>
+
+	<div class="modal-backdrop" *ngIf="deleteModalOpen">
+		<div class="delete-modal">
+			<h3>Remove Employee Record</h3>
+			<p>
+				This action permanently deletes <strong>{{ selectedEmployee?.name }}</strong> from PulseHR.
+			</p>
+			<div class="modal-actions">
+				<button mat-stroked-button (click)="closeDeleteModal()">Cancel</button>
+				<button mat-raised-button color="warn" (click)="confirmDelete()">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+<mat-toolbar class="topbar">
+	<div class="left-zone">
+		<button mat-icon-button class="menu-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+			<mat-icon>menu</mat-icon>
+		</button>
+
+		<div class="brand-block">
+			<p class="brand">PulseHR Console</p>
+			<p class="subbrand">Employee Operations Dashboard</p>
+		</div>
+	</div>
+
+	<div class="right-zone">
+		<button mat-stroked-button class="theme-btn" (click)="toggleTheme()">
+			<mat-icon>{{ darkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+			{{ darkMode ? 'Light' : 'Dark' }}
+		</button>
+
+		<div class="user-pill">
+			<mat-icon>admin_panel_settings</mat-icon>
+			<span>{{ userEmail }}</span>
+		</div>
+
+		<button mat-flat-button color="warn" class="logout-btn" (click)="logout()">Logout</button>
+	</div>
+</mat-toolbar>

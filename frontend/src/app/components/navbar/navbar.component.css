@@ -1,0 +1,83 @@
+.topbar {
+	position: sticky;
+	top: 0;
+	z-index: 40;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 64px;
+	padding: 0.4rem 0.75rem;
+	background: linear-gradient(100deg, rgba(8, 47, 73, 0.94) 0%, rgba(15, 23, 42, 0.96) 58%, rgba(30, 64, 175, 0.86) 100%);
+	backdrop-filter: blur(8px);
+	color: #e2e8f0;
+	box-shadow: 0 8px 24px rgba(2, 6, 23, 0.28);
+}
+
+.left-zone,
+.right-zone {
+	display: flex;
+	align-items: center;
+	gap: 0.55rem;
+}
+
+.brand-block {
+	display: grid;
+	line-height: 1.1;
+}
+
+.brand {
+	margin: 0;
+	font-size: 1.02rem;
+	font-weight: 700;
+	letter-spacing: 0.3px;
+}
+
+.subbrand {
+	margin: 0;
+	font-size: 0.72rem;
+	opacity: 0.76;
+}
+
+.menu-btn {
+	background: rgba(148, 163, 184, 0.2);
+}
+
+.theme-btn {
+	border-color: rgba(226, 232, 240, 0.4);
+	color: #e2e8f0;
+}
+
+.user-pill {
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.3rem 0.65rem;
+	border-radius: 999px;
+	font-size: 0.8rem;
+	background: rgba(148, 163, 184, 0.16);
+	border: 1px solid rgba(226, 232, 240, 0.2);
+}
+
+.logout-btn {
+	font-weight: 600;
+}
+
+@media (max-width: 768px) {
+	.topbar {
+		padding: 0.3rem 0.35rem;
+	}
+
+	.subbrand,
+	.user-pill {
+		display: none;
+	}
+
+	.brand {
+		font-size: 0.92rem;
+	}
+
+	.right-zone .mat-mdc-button-base {
+		min-width: 0;
+		padding: 0 0.42rem;
+	}
+}

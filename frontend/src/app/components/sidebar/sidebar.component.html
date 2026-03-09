@@ -1,0 +1,37 @@
+<aside class="sidebar" [class.closed]="!isOpen">
+	<div class="sidebar-head">
+		<div class="logo-orb">PH</div>
+		<div class="logo-text">
+			<p class="logo-title">PulseHR</p>
+			<p class="logo-sub">Admin Workspace</p>
+		</div>
+	</div>
+
+	<p class="menu-label">MAIN MENU</p>
+
+	<nav>
+		<a
+			routerLink="/dashboard/employees"
+			routerLinkActive="active"
+			[routerLinkActiveOptions]="{ exact: true }"
+			(click)="close()"
+		>
+			<mat-icon>groups</mat-icon>
+			<span class="nav-text">Employee Directory</span>
+		</a>
+		<a
+			routerLink="/dashboard/employees/new"
+			routerLinkActive="active"
+			[routerLinkActiveOptions]="{ exact: true }"
+			(click)="close()"
+		>
+			<mat-icon>person_add</mat-icon>
+			<span class="nav-text">Create Employee</span>
+		</a>
+	</nav>
+
+	<div class="sidebar-foot">
+		<p class="foot-title">System Status</p>
+		<p class="foot-value">API Connected</p>
+	</div>
+</aside>

@@ -1,0 +1,76 @@
+.login-page {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	padding: 1rem;
+	background: linear-gradient(120deg, #082f49 0%, #164e63 50%, #0f766e 100%);
+	position: relative;
+	overflow: hidden;
+}
+
+.ambient-shape {
+	position: absolute;
+	border-radius: 999px;
+	filter: blur(3px);
+}
+
+.shape-1 {
+	width: 260px;
+	height: 260px;
+	background: rgba(255, 241, 178, 0.25);
+	top: -90px;
+	left: -70px;
+}
+
+.shape-2 {
+	width: 280px;
+	height: 280px;
+	background: rgba(125, 211, 252, 0.23);
+	bottom: -120px;
+	right: -80px;
+}
+
+.login-card {
+	width: min(450px, 94vw);
+	padding: 1.4rem;
+	border-radius: 20px;
+	border: 1px solid rgba(148, 163, 184, 0.28);
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 25px 50px rgba(2, 6, 23, 0.35);
+	animation: floatIn 260ms ease;
+}
+
+.product {
+	margin: 0;
+	font-size: 0.72rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #0369a1;
+}
+
+.login-card h1 {
+	margin: 0.35rem 0 0;
+	font-size: 1.5rem;
+}
+
+.subtitle {
+	color: #475569;
+	margin: 0.4rem 0 1rem;
+}
+
+.login-form {
+	display: grid;
+	gap: 0.8rem;
+}
+
+.hint {
+	margin-top: 0.8rem;
+	font-size: 0.85rem;
+	color: #64748b;
+}
+
+@keyframes floatIn {
+	from { opacity: 0; transform: translateY(10px) scale(0.98); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}

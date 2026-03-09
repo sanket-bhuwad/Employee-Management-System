@@ -1,0 +1,64 @@
+.form-shell {
+	max-width: 980px;
+	margin: 0 auto;
+}
+
+.form-shell mat-card {
+	border-radius: 16px;
+	padding: 1rem;
+	border: 1px solid #dbeafe;
+	background: linear-gradient(120deg, rgba(255, 255, 255, 0.96), rgba(240, 249, 255, 0.96));
+}
+
+.form-head {
+	margin-bottom: 0.4rem;
+}
+
+.section-kicker {
+	margin: 0;
+	font-size: 0.7rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #0369a1;
+}
+
+.form-head h2 {
+	margin: 0.24rem 0;
+	font-size: 1.24rem;
+}
+
+.form-head p {
+	margin: 0;
+	font-size: 0.88rem;
+	color: #334155;
+}
+
+.form-shell h2 {
+	margin: 0 0 1rem;
+}
+
+.employee-form {
+	display: grid;
+	gap: 1rem;
+}
+
+.form-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.6rem;
+	margin-top: 0.4rem;
+}
+
+@media (max-width: 768px) {
+	.form-shell mat-card {
+		padding: 0.75rem;
+	}
+
+	.form-actions {
+		flex-direction: column-reverse;
+	}
+
+	.form-actions button {
+		width: 100%;
+	}
+}

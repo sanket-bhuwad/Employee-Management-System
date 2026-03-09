@@ -1,0 +1,165 @@
+.employee-list {
+	display: grid;
+	gap: 1rem;
+}
+
+.list-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.95rem 1rem;
+	border-radius: 14px;
+	background: linear-gradient(120deg, rgba(239, 246, 255, 0.95), rgba(238, 242, 255, 0.95));
+	border: 1px solid #c7d2fe;
+}
+
+.section-kicker {
+	margin: 0;
+	font-size: 0.7rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #0369a1;
+}
+
+.list-head h2 {
+	margin: 0.2rem 0;
+	font-size: 1.18rem;
+}
+
+.section-copy {
+	margin: 0;
+	font-size: 0.86rem;
+	color: #0f172a;
+	opacity: 0.78;
+}
+
+.record-badge {
+	padding: 0.38rem 0.7rem;
+	border-radius: 999px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	background: #1e3a8a;
+	color: #e0e7ff;
+}
+
+.toolbar {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.search-group {
+	display: flex;
+	gap: 0.6rem;
+	flex-wrap: wrap;
+	flex: 1;
+}
+
+.search-group .form-control {
+	min-width: 260px;
+	max-width: 500px;
+}
+
+.table-wrap {
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	background: rgba(255, 255, 255, 0.97);
+}
+
+.table-wrap table {
+	min-width: 860px;
+	margin-bottom: 0;
+}
+
+thead {
+	background: #eff6ff;
+}
+
+th,
+td {
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.action-buttons {
+	display: flex;
+	gap: 0.45rem;
+}
+
+.pagination-wrap {
+	display: flex;
+	gap: 0.35rem;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.active-page {
+	background: #0891b2;
+	color: #ffffff;
+	border-radius: 8px;
+}
+
+.modal-backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(15, 23, 42, 0.45);
+	display: grid;
+	place-items: center;
+	z-index: 999;
+}
+
+.delete-modal {
+	width: min(420px, 92vw);
+	background: #ffffff;
+	border-radius: 14px;
+	padding: 1.2rem;
+	border: 1px solid #fecaca;
+	box-shadow: 0 20px 40px rgba(2, 6, 23, 0.2);
+}
+
+.delete-modal h3 {
+	margin-top: 0;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.6rem;
+}
+
+@media (max-width: 768px) {
+	.toolbar {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.list-head {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.search-group {
+		width: 100%;
+	}
+
+	.search-group .form-control {
+		min-width: 0;
+		width: 100%;
+	}
+
+	.action-buttons {
+		flex-direction: column;
+	}
+
+	.pagination-wrap {
+		justify-content: center;
+	}
+
+	.modal-actions {
+		flex-direction: column-reverse;
+	}
+}

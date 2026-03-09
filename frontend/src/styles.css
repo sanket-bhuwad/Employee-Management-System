@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+	--app-text: #0f172a;
+	--app-bg: #f8fafc;
+	--panel-bg: rgba(255, 255, 255, 0.86);
+	--brand-cyan: #0891b2;
+	--brand-indigo: #1d4ed8;
+	--brand-ink: #0f172a;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: 'Space Grotesk', 'Segoe UI', Tahoma, sans-serif;
+	color: var(--app-text);
+	background: var(--app-bg);
+	line-height: 1.35;
+}
+
+body.dark-theme {
+	--app-text: #e2e8f0;
+	--app-bg: #020617;
+	--panel-bg: rgba(15, 23, 42, 0.85);
+}
+
+body.dark-theme .dashboard-shell {
+	background: radial-gradient(circle at 10% 10%, #1f2937 0%, #0f172a 40%, #020617 100%);
+}
+
+body.dark-theme .content-panel,
+body.dark-theme .table-wrap,
+body.dark-theme .delete-modal,
+body.dark-theme .form-shell mat-card {
+	background: var(--panel-bg);
+	color: #e2e8f0;
+	border-color: rgba(148, 163, 184, 0.18);
+}
+
+body.dark-theme .page-intro,
+body.dark-theme .list-head,
+body.dark-theme .sidebar-head,
+body.dark-theme .sidebar-foot {
+	border-color: rgba(103, 232, 249, 0.28);
+}
+
+body.dark-theme .section-copy,
+body.dark-theme .form-head p,
+body.dark-theme .hint,
+body.dark-theme .subtitle {
+	color: #cbd5e1;
+}
+
+body.dark-theme .table-striped > tbody > tr:nth-of-type(odd) > * {
+	color: #e2e8f0;
+	background-color: rgba(30, 41, 59, 0.58);
+}
+
+body.dark-theme .form-control,
+body.dark-theme .mat-mdc-select-value,
+body.dark-theme .mat-mdc-input-element {
+	color: #e2e8f0;
+}
+
+body.dark-theme .mat-mdc-form-field-focus-overlay {
+	background-color: rgba(148, 163, 184, 0.12);
+}
+
+body.dark-theme table {
+	color: #e2e8f0;
+}
+
+body.dark-theme thead {
+	background: rgba(30, 41, 59, 0.96);
+}
+
+@media (max-width: 576px) {
+	body {
+		font-size: 14px;
+	}
+}
