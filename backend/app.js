@@ -1,13 +1,39 @@
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const rateLimit = require('express-rate-limit');
+const env = require('./config/env');
 
 const employeeRoutes = require('./routes/employeeRoutes');
 const authRoutes = require('./routes/authRoutes');
+const { notFound } = require('./middleware/notFound');
+const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
-app.use(cors());
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+  standardHeaders: true,
+  legacyHeaders: false
+});
+
+app.use(helmet());
+const allowAnyOrigin = env.corsOrigins.includes('*');
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowAnyOrigin || env.corsOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error('Not allowed by CORS'));
+    }
+  })
+);
+app.use(apiLimiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -18,16 +44,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/employees', employeeRoutes);
 
-app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
-
-app.use((error, req, res, next) => {
-  console.error('Unhandled error:', error);
-
-  res.status(500).json({
-    message: error.message || 'Internal server error'
-  });
-});
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;

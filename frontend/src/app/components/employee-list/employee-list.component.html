@@ -18,6 +18,10 @@
 				(keyup.enter)="onSearch()"
 			/>
 			<button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+			<select class="form-select dept-filter" [(ngModel)]="departmentFilter" (change)="onDepartmentChange()">
+				<option value="">All Departments</option>
+				<option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+			</select>
 			<button mat-stroked-button (click)="clearSearch()">Reset</button>
 		</div>
 

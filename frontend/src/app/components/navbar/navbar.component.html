@@ -5,22 +5,20 @@
 		</button>
 
 		<div class="brand-block">
-			<p class="brand">PulseHR Console</p>
-			<p class="subbrand">Employee Operations Dashboard</p>
+			<p class="brand">NexaPeople Console</p>
+			<p class="subbrand">Employee Management Platform</p>
 		</div>
 	</div>
 
 	<div class="right-zone">
 		<button mat-stroked-button class="theme-btn" (click)="toggleTheme()">
 			<mat-icon>{{ darkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
-			{{ darkMode ? 'Light' : 'Dark' }}
+			{{ darkMode ? 'Light' : 'Dark' }} Mode
 		</button>
 
 		<div class="user-pill">
 			<mat-icon>admin_panel_settings</mat-icon>
 			<span>{{ userEmail }}</span>
 		</div>
-
-		<button mat-flat-button color="warn" class="logout-btn" (click)="logout()">Logout</button>
 	</div>
 </mat-toolbar>

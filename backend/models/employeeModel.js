@@ -11,15 +11,25 @@ const parsePagination = (page, limit) => {
   };
 };
 
-const getAllEmployees = async ({ search, page, limit }) => {
+const getAllEmployees = async ({ search, department, page, limit }) => {
   const { page: currentPage, limit: pageSize, offset } = parsePagination(page, limit);
   const searchTerm = search ? `%${search}%` : null;
+  const normalizedDepartment = department ? String(department).trim() : '';
 
-  const whereClause = searchTerm
-    ? 'WHERE name LIKE ? OR email LIKE ? OR department LIKE ?'
-    : '';
+  const conditions = [];
+  const params = [];
 
-  const params = searchTerm ? [searchTerm, searchTerm, searchTerm] : [];
+  if (searchTerm) {
+    conditions.push('(name LIKE ? OR email LIKE ? OR department LIKE ?)');
+    params.push(searchTerm, searchTerm, searchTerm);
+  }
+
+  if (normalizedDepartment) {
+    conditions.push('department = ?');
+    params.push(normalizedDepartment);
+  }
+
+  const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
   const [rows] = await pool.query(
     `SELECT id, name, email, department, salary, joining_date, created_at
@@ -61,11 +71,12 @@ const getEmployeeById = async (id) => {
 
 const createEmployee = async (employeeData) => {
   const { name, email, department, salary, joining_date } = employeeData;
+  const normalizedSalary = Number(salary);
 
   const [result] = await pool.query(
     `INSERT INTO employees (name, email, department, salary, joining_date)
      VALUES (?, ?, ?, ?, ?)`,
-    [name, email, department, salary, joining_date]
+    [name, email, department, normalizedSalary, joining_date]
   );
 
   return getEmployeeById(result.insertId);
@@ -73,12 +84,13 @@ const createEmployee = async (employeeData) => {
 
 const updateEmployee = async (id, employeeData) => {
   const { name, email, department, salary, joining_date } = employeeData;
+  const normalizedSalary = Number(salary);
 
   const [result] = await pool.query(
     `UPDATE employees
      SET name = ?, email = ?, department = ?, salary = ?, joining_date = ?
      WHERE id = ?`,
-    [name, email, department, salary, joining_date, id]
+    [name, email, department, normalizedSalary, joining_date, id]
   );
 
   if (result.affectedRows === 0) {

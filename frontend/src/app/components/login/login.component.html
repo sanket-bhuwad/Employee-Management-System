@@ -2,27 +2,41 @@
 	<div class="ambient-shape shape-1"></div>
 	<div class="ambient-shape shape-2"></div>
 
-	<mat-card class="login-card">
-		<p class="product">PulseHR Enterprise</p>
-		<h1>Admin Secure Login</h1>
-		<p class="subtitle">Manage workforce data, payroll snapshots, and employee operations.</p>
+	<mat-card class="login-shell">
+		<section class="login-brand-panel">
+			<p class="product">NexaPeople Enterprise</p>
+			<h1>Welcome Back, Admin</h1>
+			<p class="subtitle">Securely access employee operations, payroll snapshots, and workforce analytics.</p>
 
-		<form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-form">
-			<mat-form-field appearance="outline" class="w-100">
-				<mat-label>Email</mat-label>
-				<input matInput type="email" formControlName="email" placeholder="admin@example.com" />
-				<mat-error *ngIf="email?.touched && email?.invalid">Enter a valid email</mat-error>
-			</mat-form-field>
+			<div class="value-list">
+				<div><mat-icon>verified</mat-icon><span>Secure Admin Access</span></div>
+				<div><mat-icon>monitoring</mat-icon><span>Real-time HR Insights</span></div>
+				<div><mat-icon>manage_accounts</mat-icon><span>Centralized Employee Control</span></div>
+			</div>
+		</section>
 
-			<mat-form-field appearance="outline" class="w-100">
-				<mat-label>Password</mat-label>
-				<input matInput type="password" formControlName="password" placeholder="admin123" />
-				<mat-error *ngIf="password?.touched && password?.invalid">Password is required</mat-error>
-			</mat-form-field>
+		<section class="login-form-panel">
+			<h2>Sign In</h2>
+			<p class="panel-copy">Use your administrator account to continue.</p>
 
-			<button mat-flat-button color="primary" type="submit" class="w-100">Login</button>
-		</form>
+			<form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-form">
+				<mat-form-field appearance="outline" class="w-100">
+					<mat-label>Email</mat-label>
+					<input matInput type="email" formControlName="email" placeholder="admin@example.com" />
+					<mat-error *ngIf="email?.touched && email?.invalid">Enter a valid email</mat-error>
+				</mat-form-field>
 
-		<p class="hint">Sign in with backend `.env` credentials (`ADMIN_EMAIL`, `ADMIN_PASSWORD`).</p>
+				<mat-form-field appearance="outline" class="w-100">
+					<mat-label>Password</mat-label>
+					<input matInput type="password" formControlName="password" placeholder="admin123" />
+					<mat-error *ngIf="password?.touched && password?.invalid">Password is required</mat-error>
+				</mat-form-field>
+
+				<button mat-flat-button color="primary" type="submit" class="w-100">Login To Dashboard</button>
+			</form>
+
+			<p class="hint">Credentials from `.env`: `ADMIN_EMAIL` and `ADMIN_PASSWORD`.</p>
+			<p class="hint">New here? <a routerLink="/signup">Create admin account</a></p>
+		</section>
 	</mat-card>
 </div>

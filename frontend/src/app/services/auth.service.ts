@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { AdminUser, LoginResponse, SignupResponse } from '../models/admin.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:5000/api/auth';
+  private readonly apiUrl = `${environment.apiBaseUrl}/auth`;
   private readonly tokenKey = 'ems_token';
   private readonly userKey = 'ems_user';
   private readonly isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
@@ -15,9 +17,9 @@ export class AuthService {
 
   constructor(private readonly http: HttpClient) {}
 
-  login(email: string, password: string): Observable<{ token: string; user: { email: string; role: string } }> {
+  login(email: string, password: string): Observable<LoginResponse> {
     return this.http
-      .post<{ token: string; user: { email: string; role: string } }>(`${this.apiUrl}/login`, { email, password })
+      .post<LoginResponse>(`${this.apiUrl}/login`, { email, password })
       .pipe(
         tap((response) => {
           localStorage.setItem(this.tokenKey, response.token);
@@ -25,6 +27,15 @@ export class AuthService {
           this.isLoggedInSubject.next(true);
         })
       );
+  }
+
+  signup(name: string, email: string, password: string, confirmPassword: string): Observable<SignupResponse> {
+    return this.http.post<SignupResponse>(`${this.apiUrl}/signup`, {
+      name,
+      email,
+      password,
+      confirmPassword
+    });
   }
 
   logout(): void {
@@ -37,7 +48,7 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
-  getUser(): { email: string; role: string } | null {
+  getUser(): AdminUser | null {
     const user = localStorage.getItem(this.userKey);
     return user ? JSON.parse(user) : null;
   }

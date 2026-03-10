@@ -1,0 +1,45 @@
+<div class="signup-page">
+  <mat-card class="signup-card">
+    <p class="eyebrow">NexaPeople Admin Setup</p>
+    <h1>Create Admin Account</h1>
+    <p class="subtitle">Start by creating your secure admin account to access the dashboard.</p>
+
+    <form [formGroup]="signupForm" (ngSubmit)="submit()" class="signup-form">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" placeholder="John Doe" />
+        <mat-error *ngIf="formControls['name'].touched && formControls['name'].invalid">
+          Enter a valid full name
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="admin@company.com" />
+        <mat-error *ngIf="formControls['email'].touched && formControls['email'].invalid">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="formControls['password'].touched && formControls['password'].invalid">
+          Password must be at least 6 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        <mat-error *ngIf="formControls['confirmPassword'].touched && formControls['confirmPassword'].invalid">
+          Confirm password is required
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="submit" class="w-100">Create Account</button>
+    </form>
+
+    <p class="hint">Already have an account? <a routerLink="/login">Login</a></p>
+  </mat-card>
+</div>

@@ -5,9 +5,72 @@
 
 .form-shell mat-card {
 	border-radius: 16px;
-	padding: 1rem;
-	border: 1px solid #dbeafe;
-	background: linear-gradient(120deg, rgba(255, 255, 255, 0.96), rgba(240, 249, 255, 0.96));
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid #d9e2ef;
+	background: #ffffff;
+	box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
+}
+
+.register-layout {
+	display: grid;
+	grid-template-columns: minmax(240px, 0.95fr) minmax(300px, 1.25fr);
+}
+
+.pitch-panel {
+	padding: 1.25rem;
+	color: #e6efff;
+	background: linear-gradient(155deg, #0f2747 0%, #1a4d84 58%, #2d6ca8 100%);
+}
+
+.eyebrow {
+	margin: 0;
+	font-size: 0.72rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	opacity: 0.8;
+}
+
+.pitch-panel h2 {
+	margin: 0.45rem 0 0.6rem;
+	font-size: 1.45rem;
+	line-height: 1.2;
+}
+
+.pitch-panel p {
+	margin: 0;
+	line-height: 1.45;
+	opacity: 0.94;
+}
+
+.feature-list {
+	margin-top: 1rem;
+	display: grid;
+	gap: 0.6rem;
+}
+
+.feature-list div {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.52rem 0.58rem;
+	border-radius: 10px;
+	background: rgba(13, 27, 44, 0.24);
+	border: 1px solid rgba(194, 213, 236, 0.35);
+}
+
+.feature-list mat-icon {
+	font-size: 1rem;
+	width: 1rem;
+	height: 1rem;
+}
+
+.feature-list span {
+	font-size: 0.84rem;
+}
+
+.form-panel {
+	padding: 1.1rem 1.2rem;
 }
 
 .form-head {
@@ -19,12 +82,17 @@
 	font-size: 0.7rem;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	color: #0369a1;
+	color: #0a4f8e;
 }
 
 .form-head h2 {
 	margin: 0.24rem 0;
 	font-size: 1.24rem;
+}
+
+.form-head h3 {
+	margin: 0.24rem 0;
+	font-size: 1.22rem;
 }
 
 .form-head p {
@@ -39,19 +107,54 @@
 
 .employee-form {
 	display: grid;
-	gap: 1rem;
+	gap: 0.8rem;
+}
+
+.fields-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(220px, 1fr));
+	gap: 0.35rem 0.8rem;
+}
+
+.field-item.full-row {
+	grid-column: 1 / -1;
 }
 
 .form-actions {
 	display: flex;
 	justify-content: flex-end;
 	gap: 0.6rem;
-	margin-top: 0.4rem;
+	margin-top: 0.2rem;
 }
 
 @media (max-width: 768px) {
+	.register-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.pitch-panel {
+		padding: 1rem;
+	}
+
+	.pitch-panel h2 {
+		font-size: 1.2rem;
+	}
+
 	.form-shell mat-card {
-		padding: 0.75rem;
+		border-radius: 16px;
+	}
+
+	.form-panel {
+		padding: 0.85rem;
+	}
+
+	.fields-grid {
+		grid-template-columns: 1fr;
+		gap: 0.25rem;
+	}
+
+	.field-item.full-row {
+		grid-column: auto;
 	}
 
 	.form-actions {

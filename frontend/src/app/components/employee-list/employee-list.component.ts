@@ -16,6 +16,8 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
   displayedColumns: string[] = ['name', 'email', 'department', 'salary', 'joining_date', 'actions'];
   searchTerm = '';
+  departmentFilter = '';
+  departments: string[] = [];
   page = 1;
   limit = 10;
   pagination: EmployeePagination = {
@@ -35,12 +37,21 @@ export class EmployeeListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadDepartmentOptions();
     this.loadEmployees();
+  }
+
+  loadDepartmentOptions(): void {
+    this.employeeService.getEmployees('', '', 1, 1000).subscribe({
+      next: (response) => {
+        this.departments = this.getDepartmentsFromRows(response.data);
+      }
+    });
   }
 
   loadEmployees(): void {
     this.spinner.show();
-    this.employeeService.getEmployees(this.searchTerm, this.page, this.limit).subscribe({
+    this.employeeService.getEmployees(this.searchTerm, this.departmentFilter, this.page, this.limit).subscribe({
       next: (response) => {
         this.employees = response.data;
         this.pagination = response.pagination;
@@ -59,6 +70,12 @@ export class EmployeeListComponent implements OnInit {
 
   clearSearch(): void {
     this.searchTerm = '';
+    this.departmentFilter = '';
+    this.page = 1;
+    this.loadEmployees();
+  }
+
+  onDepartmentChange(): void {
     this.page = 1;
     this.loadEmployees();
   }
@@ -118,6 +135,10 @@ export class EmployeeListComponent implements OnInit {
   get pageNumbers(): number[] {
     const totalPages = this.pagination.totalPages || 1;
     return Array.from({ length: totalPages }, (_, index) => index + 1);
+  }
+
+  private getDepartmentsFromRows(rows: Employee[]): string[] {
+    return Array.from(new Set(rows.map((row) => row.department).filter(Boolean))).sort();
   }
 
 }

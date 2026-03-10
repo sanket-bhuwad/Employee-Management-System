@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
 	--app-text: #0f172a;
-	--app-bg: #f8fafc;
-	--panel-bg: rgba(255, 255, 255, 0.86);
-	--brand-cyan: #0891b2;
-	--brand-indigo: #1d4ed8;
-	--brand-ink: #0f172a;
+	--app-bg: #f3f6fb;
+	--panel-bg: rgba(255, 255, 255, 0.94);
+	--surface-border: #d9e2ef;
+	--brand-primary: #0057b8;
+	--brand-accent: #00a3a3;
+	--brand-ink: #0f1f3a;
 }
 
 * {
@@ -20,20 +21,27 @@ body {
 
 body {
 	margin: 0;
-	font-family: 'Space Grotesk', 'Segoe UI', Tahoma, sans-serif;
+	font-family: 'Manrope', 'Segoe UI', Tahoma, sans-serif;
 	color: var(--app-text);
-	background: var(--app-bg);
-	line-height: 1.35;
+	background:
+		radial-gradient(circle at 100% 0%, #e8f1ff 0%, transparent 35%),
+		radial-gradient(circle at 0% 100%, #e7f6f5 0%, transparent 30%),
+		var(--app-bg);
+	line-height: 1.4;
 }
 
 body.dark-theme {
-	--app-text: #e2e8f0;
-	--app-bg: #020617;
-	--panel-bg: rgba(15, 23, 42, 0.85);
+	--app-text: #dbe7fb;
+	--app-bg: #091425;
+	--panel-bg: rgba(11, 26, 47, 0.9);
+	--surface-border: rgba(98, 128, 168, 0.35);
 }
 
 body.dark-theme .dashboard-shell {
-	background: radial-gradient(circle at 10% 10%, #1f2937 0%, #0f172a 40%, #020617 100%);
+	background:
+		radial-gradient(circle at 0% 0%, #1a3a63 0%, transparent 35%),
+		radial-gradient(circle at 100% 100%, #103a3a 0%, transparent 35%),
+		#091425;
 }
 
 body.dark-theme .content-panel,
@@ -41,8 +49,8 @@ body.dark-theme .table-wrap,
 body.dark-theme .delete-modal,
 body.dark-theme .form-shell mat-card {
 	background: var(--panel-bg);
-	color: #e2e8f0;
-	border-color: rgba(148, 163, 184, 0.18);
+	color: #dbe7fb;
+	border-color: var(--surface-border);
 }
 
 body.dark-theme .page-intro,
@@ -56,7 +64,7 @@ body.dark-theme .section-copy,
 body.dark-theme .form-head p,
 body.dark-theme .hint,
 body.dark-theme .subtitle {
-	color: #cbd5e1;
+	color: #b8cbe6;
 }
 
 body.dark-theme .table-striped > tbody > tr:nth-of-type(odd) > * {
@@ -75,11 +83,19 @@ body.dark-theme .mat-mdc-form-field-focus-overlay {
 }
 
 body.dark-theme table {
-	color: #e2e8f0;
+	color: #dbe7fb;
 }
 
 body.dark-theme thead {
-	background: rgba(30, 41, 59, 0.96);
+	background: rgba(16, 32, 58, 0.96);
+}
+
+.mat-mdc-card,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-form-field {
+	font-family: 'Manrope', 'Segoe UI', Tahoma, sans-serif !important;
 }
 
 @media (max-width: 576px) {

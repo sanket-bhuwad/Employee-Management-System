@@ -1,74 +1,102 @@
 <div class="form-shell">
 	<mat-card>
-		<div class="form-head">
-			<p class="section-kicker">Employee Profile</p>
-			<h2>{{ isEditMode ? 'Update Employee Record' : 'Create New Employee' }}</h2>
-			<p>Fill in official employee details and keep your workforce records accurate.</p>
+		<div class="register-layout">
+			<section class="pitch-panel">
+				<p class="eyebrow">NexaPeople Registration</p>
+				<h2>Build A Better Team Profile</h2>
+				<p>
+					Capture complete employee details in one guided form and maintain clean HR records for payroll,
+					reporting, and onboarding.
+				</p>
+
+				<div class="feature-list">
+					<div>
+						<mat-icon>verified_user</mat-icon>
+						<span>Verified employee records</span>
+					</div>
+					<div>
+						<mat-icon>insights</mat-icon>
+						<span>Instant dashboard analytics</span>
+					</div>
+					<div>
+						<mat-icon>security</mat-icon>
+						<span>Admin-controlled operations</span>
+					</div>
+				</div>
+			</section>
+
+			<section class="form-panel">
+				<div class="form-head">
+					<p class="section-kicker">Employee Profile</p>
+					<h3>{{ isEditMode ? 'Update Employee Record' : 'Create New Employee' }}</h3>
+					<p>Fill in official employee details and keep your workforce records accurate.</p>
+				</div>
+
+				<form [formGroup]="employeeForm" (ngSubmit)="submit()" class="employee-form">
+					<div class="fields-grid">
+						<div class="field-item">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Name</mat-label>
+								<input matInput formControlName="name" />
+								<mat-error *ngIf="formControls['name'].touched && formControls['name'].invalid">
+									Enter a valid name
+								</mat-error>
+							</mat-form-field>
+						</div>
+
+						<div class="field-item">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Email</mat-label>
+								<input matInput type="email" formControlName="email" />
+								<mat-error *ngIf="formControls['email'].touched && formControls['email'].invalid">
+									Enter a valid email
+								</mat-error>
+							</mat-form-field>
+						</div>
+
+						<div class="field-item">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Department</mat-label>
+								<mat-select formControlName="department">
+									<mat-option *ngFor="let department of departments" [value]="department">
+										{{ department }}
+									</mat-option>
+								</mat-select>
+								<mat-error *ngIf="formControls['department'].touched && formControls['department'].invalid">
+									Department is required
+								</mat-error>
+							</mat-form-field>
+						</div>
+
+						<div class="field-item">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Salary</mat-label>
+								<input matInput type="number" formControlName="salary" />
+								<mat-error *ngIf="formControls['salary'].touched && formControls['salary'].invalid">
+									Salary must be a positive number
+								</mat-error>
+							</mat-form-field>
+						</div>
+
+						<div class="field-item full-row">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Joining Date</mat-label>
+								<input matInput type="date" formControlName="joining_date" />
+								<mat-error *ngIf="formControls['joining_date'].touched && formControls['joining_date'].invalid">
+									Joining date is required
+								</mat-error>
+							</mat-form-field>
+						</div>
+					</div>
+
+					<div class="form-actions">
+						<button mat-stroked-button type="button" (click)="cancel()">Cancel</button>
+						<button mat-raised-button color="primary" type="submit">
+							{{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+						</button>
+					</div>
+				</form>
+			</section>
 		</div>
-
-		<form [formGroup]="employeeForm" (ngSubmit)="submit()" class="employee-form">
-			<div class="row g-3">
-				<div class="col-md-6">
-					<mat-form-field appearance="outline" class="w-100">
-						<mat-label>Name</mat-label>
-						<input matInput formControlName="name" />
-						<mat-error *ngIf="formControls['name'].touched && formControls['name'].invalid">
-							Enter a valid name
-						</mat-error>
-					</mat-form-field>
-				</div>
-
-				<div class="col-md-6">
-					<mat-form-field appearance="outline" class="w-100">
-						<mat-label>Email</mat-label>
-						<input matInput type="email" formControlName="email" />
-						<mat-error *ngIf="formControls['email'].touched && formControls['email'].invalid">
-							Enter a valid email
-						</mat-error>
-					</mat-form-field>
-				</div>
-
-				<div class="col-md-6">
-					<mat-form-field appearance="outline" class="w-100">
-						<mat-label>Department</mat-label>
-						<mat-select formControlName="department">
-							<mat-option *ngFor="let department of departments" [value]="department">
-								{{ department }}
-							</mat-option>
-						</mat-select>
-						<mat-error *ngIf="formControls['department'].touched && formControls['department'].invalid">
-							Department is required
-						</mat-error>
-					</mat-form-field>
-				</div>
-
-				<div class="col-md-6">
-					<mat-form-field appearance="outline" class="w-100">
-						<mat-label>Salary</mat-label>
-						<input matInput type="number" formControlName="salary" />
-						<mat-error *ngIf="formControls['salary'].touched && formControls['salary'].invalid">
-							Salary must be a positive number
-						</mat-error>
-					</mat-form-field>
-				</div>
-
-				<div class="col-md-6">
-					<mat-form-field appearance="outline" class="w-100">
-						<mat-label>Joining Date</mat-label>
-						<input matInput type="date" formControlName="joining_date" />
-						<mat-error *ngIf="formControls['joining_date'].touched && formControls['joining_date'].invalid">
-							Joining date is required
-						</mat-error>
-					</mat-form-field>
-				</div>
-			</div>
-
-			<div class="form-actions">
-				<button mat-stroked-button type="button" (click)="cancel()">Cancel</button>
-				<button mat-raised-button color="primary" type="submit">
-					{{ isEditMode ? 'Update Employee' : 'Create Employee' }}
-				</button>
-			</div>
-		</form>
 	</mat-card>
 </div>

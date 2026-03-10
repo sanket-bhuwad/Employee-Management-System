@@ -5,7 +5,7 @@ Full-stack Employee Management System with JWT admin login, employee CRUD APIs, 
 ## Tech Stack
 
 - Frontend: Angular 16, Angular Material, Bootstrap, ngx-toastr, ngx-spinner
-- Backend: Node.js, Express, MySQL, dotenv, cors, body-parser, jsonwebtoken
+- Backend: Node.js, Express, MySQL, dotenv, cors, body-parser, jsonwebtoken, helmet, express-rate-limit
 - Database: MySQL
 
 ## Folder Structure
@@ -14,12 +14,18 @@ Full-stack Employee Management System with JWT admin login, employee CRUD APIs, 
 EmployeeManagementSystem/
   backend/
     config/
+      env.js
       db.js
     controllers/
       authController.js
       employeeController.js
     middleware/
       authMiddleware.js
+      errorHandler.js
+      notFound.js
+      validators/
+        authValidation.js
+        employeeValidation.js
     models/
       employeeModel.js
     routes/
@@ -29,6 +35,9 @@ EmployeeManagementSystem/
     server.js
     .env.example
   frontend/
+    src/environments/
+      environment.ts
+      environment.prod.ts
     src/app/
       components/
         dashboard/
@@ -39,6 +48,8 @@ EmployeeManagementSystem/
         sidebar/
       guards/
         auth.guard.ts
+      interceptors/
+        auth.interceptor.ts
       models/
         employee.model.ts
       services/
@@ -52,6 +63,7 @@ EmployeeManagementSystem/
 ## Backend API Endpoints
 
 - `POST /api/auth/login`
+- `POST /api/auth/signup`
 - `GET /api/employees`
 - `GET /api/employees/:id`
 - `POST /api/employees`
@@ -102,9 +114,17 @@ Use values from backend `.env`:
 - `ADMIN_EMAIL`
 - `ADMIN_PASSWORD` (or `ADMIN_PASSWORD_HASH`)
 
+## First-Time Admin Signup Flow
+
+1. Open `http://localhost:4200/signup`
+2. Create admin account (stored in `admins` table)
+3. Login from `http://localhost:4200/login`
+4. Access dashboard and start managing employees
+
 ## Features Included
 
 - JWT-based admin authentication
+- Auth interceptor with automatic token attach and 401 session handling
 - Protected dashboard routes
 - Employee CRUD with validation
 - Search filter and pagination
@@ -112,6 +132,15 @@ Use values from backend `.env`:
 - Employee statistics cards
 - Responsive top navbar + sidebar layout
 - Dark mode toggle
+
+## Industry Standard Upgrades
+
+- Centralized environment configuration (`backend/config/env.js`)
+- Security hardening with `helmet` and API rate limiting
+- Validation middleware for auth and employee payloads
+- Standardized not-found and global error handlers
+- Environment-based frontend API base URL setup
+- Angular production environment file replacements
 
 ## Notes
 

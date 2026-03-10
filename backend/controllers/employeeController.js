@@ -1,15 +1,9 @@
 const employeeModel = require('../models/employeeModel');
 
-const requiredFields = ['name', 'email', 'department', 'salary', 'joining_date'];
-
-const validatePayload = (payload) => {
-  return requiredFields.every((field) => payload[field] !== undefined && payload[field] !== '');
-};
-
 const getEmployees = async (req, res, next) => {
   try {
-    const { search = '', page = 1, limit = 10 } = req.query;
-    const result = await employeeModel.getAllEmployees({ search, page, limit });
+    const { search = '', department = '', page = 1, limit = 10 } = req.query;
+    const result = await employeeModel.getAllEmployees({ search, department, page, limit });
     res.status(200).json(result);
   } catch (error) {
     next(error);
@@ -32,10 +26,6 @@ const getEmployee = async (req, res, next) => {
 
 const createEmployee = async (req, res, next) => {
   try {
-    if (!validatePayload(req.body)) {
-      return res.status(400).json({ message: 'All employee fields are required' });
-    }
-
     const employee = await employeeModel.createEmployee(req.body);
     return res.status(201).json(employee);
   } catch (error) {
@@ -49,10 +39,6 @@ const createEmployee = async (req, res, next) => {
 
 const updateEmployee = async (req, res, next) => {
   try {
-    if (!validatePayload(req.body)) {
-      return res.status(400).json({ message: 'All employee fields are required' });
-    }
-
     const employee = await employeeModel.updateEmployee(req.params.id, req.body);
 
     if (!employee) {
